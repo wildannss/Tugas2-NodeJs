@@ -10,7 +10,7 @@ exports.index = function(req,res){
         }
         res.json({
             status: 'success',
-            message: 'siswa ditambahkan',
+            message: 'siswa belom ditambah karena pakai GET',
             data: siswa
         });
     });
@@ -20,8 +20,8 @@ exports.new = function(req,res){
     var siswa = new siswaModel();
     siswa.nama = req.body.nama ? req.body.nama : siswa.nama;
     siswa.tanggallahir = req.body.tanggallahir;
-    siswa.nama = req.body.nama;
     siswa.jeniskelamin = req.body.jeniskelamin;
+    siswa.hobi = req.body.hobi;
     
     siswa.save(function(err){
         // if(err)
