@@ -9,7 +9,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+<<<<<<< HEAD
 mongoose.connect('mongodb://localhost:27017/Tugas3-NodeJs', {
+=======
+mongoose.connect('mongodb://localhost:27017/Tugas2-NodeJs', {
+>>>>>>> master
     useUnifiedTopology: true,
     useNewUrlParser: true
 });

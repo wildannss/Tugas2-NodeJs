@@ -30,7 +30,11 @@ exports.new = function(req,res){
         if(err)
         res.json(err);
         res.json({
+<<<<<<< HEAD
             pesan: "Siswa sudah ditambah",
+=======
+            pesan: "Data siswa sudah ditambah",
+>>>>>>> master
             data: siswa
         });
     });
@@ -38,6 +42,7 @@ exports.new = function(req,res){
 
 // cari info
 exports.view = function(req,res){
+<<<<<<< HEAD
     siswaModel.findById(req.params.siswa_id, function (err, siswa) {
         if(err)
         res.send(err);
@@ -68,5 +73,14 @@ exports.put = function(req,res){
                 data: siswa
             });
         }); 
+=======
+    siswaModel.findById(req.param.siswa_id, function (err, siswa) {
+        if(err)
+        res.send(err);
+        res.json({
+            pesan: "Data siswa sedang di loading ...",
+            data: siswa
+        });
+>>>>>>> master
     });
 };
