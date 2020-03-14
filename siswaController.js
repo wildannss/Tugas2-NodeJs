@@ -1,45 +1,72 @@
 siswaModel = require('./siswaModel');
 
+// home/tampilkan
 exports.index = function(req,res){
-    siswaModel.get(function(err,siswa){
+    siswaModel.get(function (err, siswa) {
         if(err){
             res.json({
-                status: 'error',
-                message: err
+                status: "error",
+                pesan: err
             });
         }
         res.json({
-            status: 'success',
-            message: 'siswa belom ditambah karena pakai GET',
+            status: "sukses",
+            pesan: "Menampilkan data siswa",
             data: siswa
         });
     });
 };
 
+// input baru
 exports.new = function(req,res){
-    var siswa = new siswaModel();
-    siswa.nama = req.body.nama ? req.body.nama : siswa.nama;
-    siswa.tanggallahir = req.body.tanggallahir;
-    siswa.jeniskelamin = req.body.jeniskelamin;
-    siswa.hobi = req.body.hobi;
-    
+    let siswa = new siswaModel();
+    siswa.nama = req.query.nama ? req.query.nama : siswa.nama;
+    siswa.tanggallahir = req.query.tanggallahir;
+    siswa.jeniskelamin = req.query.jeniskelamin;
+    siswa.hobi = req.query.hobi;
+
+    //save
     siswa.save(function(err){
-        // if(err)
-        // res.json(err);
+        if(err)
+        res.json(err);
         res.json({
-            message: 'siswa baru ditambah bos',
+            pesan: "Siswa sudah ditambah",
             data: siswa
         });
     });
 };
 
+// cari info
 exports.view = function(req,res){
-    siswaModel.findById(req.param.siswa_id,function(err,siswa){
+    siswaModel.findById(req.params.siswa_id, function (err, siswa) {
         if(err)
-            res.send(err);
+        res.send(err);
+        res.json({
+            pesan: "Data siswa sudah di loading ...",
+            data: siswa
+        });
+    });
+};
+
+//update data
+exports.put = function(req,res){
+    siswaModel.findById(req.params.siswa_id, function (err,siswa){
+        if(err)
+        res.send(err);
+
+        siswa.nama = req.query.nama ? req.query.nama : siswa.nama;
+        siswa.tanggallahir = req.query.tanggallahir;
+        siswa.jeniskelamin = req.query.jeniskelamin;
+        siswa.hobi = req.query.hobi;
+
+        //save
+        siswa.save(function (err) {
+            if (err)
+                res.json(err);
             res.json({
-                message: 'lagi loading',
+                pesan: "Siswa sudah diupdate",
                 data: siswa
             });
+        }); 
     });
 };

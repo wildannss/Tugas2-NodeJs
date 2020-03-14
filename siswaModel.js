@@ -1,5 +1,6 @@
-var mongoose = require('mongoose');
-var siswaSchema = mongoose.Schema({
+let mongoose = require('mongoose');
+
+let siswaSchema = mongoose.Schema({
     nama: {
         type: String,
         required: true
@@ -16,9 +17,14 @@ var siswaSchema = mongoose.Schema({
         type: String,
         required: true
     },
-});
+    create_date: {
+        type: Date,
+        default: Date.now
+    }
+}, {versionKey: false});
 
-var siswaModel = module.exports = mongoose.model('siswa', siswaSchema);
-module.exports.get = function(callback,limit){
+//export
+let siswaModel = module.exports = mongoose.model('siswas', siswaSchema);
+module.exports.get = function(callback, limit){
     siswaModel.find(callback).limit(limit);
-};
+}
