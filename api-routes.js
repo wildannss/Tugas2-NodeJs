@@ -1,12 +1,8 @@
-    let router = require('express').Router()
+let router = require('express').Router()
 
 router.get('/', function(req,res){
     res.json({
-<<<<<<< HEAD
-        status: "API jalan",
-=======
         status: "API working",
->>>>>>> master
         pesan: "Selamat Datang"
     });
 });
